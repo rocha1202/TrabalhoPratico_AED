@@ -1,0 +1,4 @@
+# detalha as dependencias do programa
+
+customtkinter==5.0.3
+darkdetect==0.8.0
