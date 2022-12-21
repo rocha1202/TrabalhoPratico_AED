@@ -1,14 +1,16 @@
-from customtkinter import *
+import customtkinter
+
+customtkinter.set_appearance_mode("system") # segue o tema do sistema
 
 # Creates the main window for customtkinter
-root = CTk()
+root = customtkinter.CTk()
 root.attributes("-zoomed", True) # maximized
 
 def buttonClick():
     with open('test.txt', 'w') as file:
         file.write('The button was clicked.')
 
-button = CTkButton(root, command=buttonClick)
+button = customtkinter.CTkButton(root, command=buttonClick)
 button.pack()
 
 root.mainloop()
