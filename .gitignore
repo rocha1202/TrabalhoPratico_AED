@@ -1,2 +1,5 @@
 # Ignora os arquivos de cache do python
 __pycache__/
+
+# Ignora o ambiente virtual criado pelo python
+.venv/
