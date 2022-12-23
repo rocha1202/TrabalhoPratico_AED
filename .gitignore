@@ -3,3 +3,6 @@ __pycache__/
 
 # Ignora o ambiente virtual criado pelo python
 .venv/
+
+# Ignora os arquivos de configuração do vscode
+.vscode/
