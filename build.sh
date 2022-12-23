@@ -13,4 +13,4 @@ source .venv/bin/activate
 pip install -r requirements.txt
 
 # por fim roda o programa
-python main.py
+python app.py
