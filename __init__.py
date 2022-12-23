@@ -1,17 +1,22 @@
 import tkinter
 import tkinter.messagebox
 import customtkinter
+import src.utils as utils
+
+defaults_settings = utils.get_default()
+print(defaults_settings)
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 
+# isso é ainda só um placeholder do programa 
 class App(customtkinter.CTk):
     def __init__(self):
         super().__init__()
 
         # configure window
-        self.title("CustomTkinter complex_example.py")
+        self.title(defaults_settings["app_name"] if defaults_settings["app_name"] else "GT5")
         self.geometry(f"{1100}x{580}")
         self.attributes("-zoomed", True)
 

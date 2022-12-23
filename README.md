@@ -10,7 +10,7 @@ O GT5 é um gestor de jogos bem simples que está sendo desenvolvido como um pro
 O GT5 é capaz de gerenciar varias contas numa unica instalação.
 Para criar uma conta clica no icone no canto inferior esquerdo. A clicar um popup será aberto pedindo o login.
 ![Login Screenshot](./img/screenshots/login.png)
-Podes fazer login como usuario _root_ com a palavra-passe padrão de **1234** caso seja uma instalação limpa do programa ou podes criar uma nova conta clicando em criar nova conta.
+Podes fazer login como usuario _admin_ com a palavra-passe padrão de **1234** caso seja uma instalação limpa do programa ou podes criar uma nova conta clicando em criar nova conta.
 ![Criar Conta Screenshot](./img/screenshots/criar_conta.png)
 Ao criar uma conta por padrão o usuario não tem nenhuma permissão especial (como criar novas categorias).
 
