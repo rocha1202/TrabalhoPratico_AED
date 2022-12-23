@@ -6,15 +6,13 @@ Contem funções basicas, genericas e utilitarios
 
 config_file = ".config"
 
-def get_default() -> dict:
+def parser(__filepath:str) -> dict:
     """
-    Retorna as configurações padroẽs definidas no arquivo 'config_file'
-
-    Por padrão o arquivo é .config
+    Lê o arquivo e converte o conteudo para um dicionario
     """
-    defaults = dict()
+    results = dict()
 
-    with open(config_file, "r") as file:
+    with open(__filepath, "r") as file:
         # lê linha a linha
         for line in file:
             # ignora comentarios e as linhas invalidas
@@ -49,12 +47,16 @@ def get_default() -> dict:
                 new_value += caracter
 
             # guarda no dicionario
-            defaults[key] = new_value.strip()
+            results[key] = new_value.strip()
 
         # Retorn defaults caso este exita
-        return defaults if defaults else dict()
-    
+        return results if results else dict()
+
+
+def get_defaults():
+    return parser(config_file)
+
 
 if __name__ == "__main__":
     # ao rodar o programa diretamente este imprime na tela as definições padrões
-    print(get_default())
+    print(parser())
