@@ -25,6 +25,25 @@ Caso outro usuario tenha adcionado um jogo previamente podes simplesmente adcion
 ## Estado
 Este programa ainda está em desenvolvento.
 
+## Utilização
+### Linux e Mac
+Clone o repositorio:
+```
+$ git clone https://github.com/rocha1202/TrabalhoPratico_AED
+
+$ cd TrabalhoPratico_AED
+```
+Execute no seu terminal o script _build.sh_:
+```
+$ chmod +x build.sh
+
+$ ./build.sh
+```
+
+### Windows
+Primeiro baixe o linux, depois instale-o e execute os passo acima :).
+Brincadeiras a parte, o script para windows será provido em breve.
+
 ---
 **Tecnologias e Sistemas de Informação para Web**
 ![Logo TSIW](./img/assets/tsiw/white.svg)
