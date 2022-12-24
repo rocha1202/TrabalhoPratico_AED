@@ -56,7 +56,16 @@ def parser(__filepath:str) -> dict:
 def get_defaults():
     return parser(config_file)
 
+def get_app_name():
+    return get_defaults()["app_name"]
+
+
+config = get_defaults()
+
+APPNAME = config["app_name"]
+theme   = config["theme"]
+
 
 if __name__ == "__main__":
     # ao rodar o programa diretamente este imprime na tela as definições padrões
-    print(parser())
+    print(parser(config_file))

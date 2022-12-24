@@ -5,7 +5,7 @@ import lib.utils as utils
 import lib.theme as theme
 
 defaults_settings = utils.get_defaults()
-default_theme = theme.get_default_theme()
+default_theme = theme.get_theme()
 
 customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
