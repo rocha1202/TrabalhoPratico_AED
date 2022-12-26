@@ -12,9 +12,10 @@ if __name__ == "__main__":
 else:
     import lib.utils as utils
     from lib.utils import APPNAME
+    from lib.utils import theme as current_theme_path
 
 
-__DEFAULT_THEME_PATH = ".theme" # o arquivo que contem o tema padrão
+__DEFAULT_THEME_PATH = ".config/theme.config" # o arquivo que contem o tema padrão
 
 __PROGRAMNAME = "themes-gt5" # o nome do utilitario
 __DEFAULT     = True if utils.theme == __DEFAULT_THEME_PATH else False
