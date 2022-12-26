@@ -6,3 +6,6 @@ __pycache__/
 
 # Ignora os arquivos de configuração do vscode
 .vscode/
+
+# Ignora o cache do programa
+cache/
