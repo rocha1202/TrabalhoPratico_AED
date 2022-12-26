@@ -9,3 +9,8 @@ __pycache__/
 
 # Ignora o cache do programa
 cache/
+
+# Ignora os usuarios e o jogos
+games/
+users/
+banners/
