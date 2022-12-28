@@ -3,7 +3,7 @@
 # mas ainda é necessario ter o python 3.10 instalado no seu dispossitivo
 
 # cria o ambiente virtual
-python3 -m venv .venv
+python3.10 -m venv .venv
 
 # usa o ambiente virtual criado (não sei se funciona no windows)
 # (provavelmente não)
