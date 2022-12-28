@@ -16,4 +16,4 @@ users/
 banners/
 
 # Ignora os arquivos cache do mac
-.DS_Store/
+.DS_Store
