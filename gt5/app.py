@@ -21,7 +21,7 @@ class App(customtkinter.CTk):
         self.title(APPNAME) # o titulo do app
         self.geometry(f"{1540}x{1024}") # o tamanho inicial
         #self.minsize(1540, 1024) # tamanho minimo
-        self.attributes("-zoomed", True) # maximiza o window
+        #self.attributes("-zoomed", True) # maximiza o window
         #self.resizable(0, 0)
 
         # configura o icone
