@@ -22,8 +22,19 @@ Depois de adcionado o jogo já aparece na sua biblioteca e podes eventualmente d
 ### Comunidade
 Caso outro usuario tenha adcionado um jogo previamente podes simplesmente adcionar este a sua coleção ao inves de ter que fazer todo o processo de criar o jogo.
 
+## Dependencias
+Para usar o programa é necessario ter o python na versão [3.10](https://www.python.org/downloads/release/python-3109/), apos isso use o script [build.sh](build.sh) para fazer o resto da instalação.
+
+- python==3.10
+- customtkinter==5.0.3
+- darkdetect==0.8.0
+- Pillow==9.3.0
+
+### script
+O script cria um ambiente virtual, o ativa e usa o requirements.txt para instalar a dependencias e executa o programa
+
 ## Estado
-Este programa ainda está em desenvolvento.
+Este programa ainda está em desenvolvento. 
 
 ## Utilização
 ### Linux e Mac
