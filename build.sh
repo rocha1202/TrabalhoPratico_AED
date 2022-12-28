@@ -13,4 +13,4 @@ source .venv/bin/activate
 python -m pip install -r requirements.txt
 
 # por fim roda o programa
-python src/app.py
+python gt5/app.py
