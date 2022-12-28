@@ -1,5 +1,11 @@
 # detalha as dependencias do programa
 # para instalar user 'pip install -r requirements.txt'
 
+# usa o customtkinter para criar o window e os widgets
 customtkinter==5.0.3
+
+# dependencia do customtkinter para detectar o modo escuro
 darkdetect==0.8.0
+
+# dependencia opcional necessario quando se trabalha com imagens
+Pillow==9.3.0
