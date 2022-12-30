@@ -17,3 +17,6 @@ banners/
 
 # Ignora os arquivos cache do mac
 .DS_Store
+
+# Ignora os arquivos de configuração do obsidian
+.obsidian/
