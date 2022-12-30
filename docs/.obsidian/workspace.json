@@ -4,24 +4,34 @@
     "type": "split",
     "children": [
       {
-        "id": "fe45c22e6b5605dc",
+        "id": "96ff8c5f10b1015a",
         "type": "tabs",
         "children": [
           {
-            "id": "d12d78056e17532d",
-            "type": "leaf",
-            "state": {
-              "type": "graph",
-              "state": {}
-            }
-          },
-          {
-            "id": "49ada4b3f9f5807d",
+            "id": "53220374f3456076",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
                 "file": "3 - Usuarios.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      },
+      {
+        "id": "c592b6df9ae6df8e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "646f4d1d56b948b0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "4 - Jogos.md",
                 "mode": "source",
                 "source": false
               }
@@ -93,6 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "4 - Jogos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -109,6 +120,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "4 - Jogos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -130,7 +142,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "4 - Jogos.md"
+              }
             }
           }
         ]
@@ -150,12 +164,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d12d78056e17532d",
+  "active": "646f4d1d56b948b0",
   "lastOpenFiles": [
     "3 - Usuarios.md",
+    "4 - Jogos.md",
     "2 - Arquivos de configuração.md",
     "1 - Introdução.md",
-    "enunciado.pdf",
-    "README.md"
+    "Usuarios.md",
+    "README.md",
+    "enunciado.pdf"
   ]
 }

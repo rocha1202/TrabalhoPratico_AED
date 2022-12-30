@@ -16,7 +16,9 @@ Para converter o arquivos de configuração para uma estrutura de dados que o py
 3. Faz o tratamento dos values. Convertendo para inteiro ou lista caso seja possivel.
 ## Deparser
 Se o parser converte o texto para python o deparser faz o inverso convertendo o python para texto, repitindo os mesmo passos de traz para frente. O deparser tambem é parte do mesmo modulo implementado como uma função como nome ```make(__filepath, __data)``` que recebe o caminho para o arquivo e os dados num dicionario.
-## Arquivos de usuarios
-Os arquivos dos usarios vão para a sua pasta pessoal com nome de .config (ex: users/\<username\>/.config)
-## Jogos
-Os arquivos na pasta games, ou seja os dados dos jogos são todos arquivos de configuração.
+O deparser reescreve o arquivo mas somente os dados contidos no ```__data``` serão reescritos e os comentarios preservados.
+## [[3 - Usuarios|Usuarios]]
+Os arquivos dos usarios vão para a sua pasta pessoal com nome de .config (ex: users/\<username\>/). O arquivo de configuração que contem os dados do usuario tem o nome de _.config_ assim como o arquivo de configuração global. Os outros arquivos são os arquivos de configuração os de coleção, favoritos e lista.
+## [[4 - Jogos | Jogos]]
+Os arquivos na pasta games, ou seja os dados dos jogos são todos arquivos de configuração. Os dados do jogo são todos guardados neste arquivo. O nome do arquivo é o ID (_identification number_) do jogo.
+O **ID** é um numero inteiro que autoincrimento da mesma forma que acontece numa base de dados relacional (ex: como o _mysql_) o ID do proximo jogo a ser adcionado pode ser encatrado no arquivo de configuração global dos jogos [.config/game.config](../.config/game.config).
