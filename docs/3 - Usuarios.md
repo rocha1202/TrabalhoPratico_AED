@@ -40,6 +40,16 @@ As listas ficam guardas no arquivo _list.config_ em que cada nome de lista é um
 Relax="1;2;3;7"
 Jogar com amigos="2;3;4;2;2"
 ```
+## Temas
+É possivel criar um tema customizado para o programa com um arquivo _theme.config_ na pasta do usuario. O arquivo deve ter alguns atributos que são as cores a serem usadas.
+```
+PRINCIPAL="#242526"
+SECUNDARIA="#6D7073"
+ESCURO="#293540"
+CLARO="#4B5F73"
+BRANCO="#B6BABF"
+```
+Cada cor subscreve as cores padrões e caso o atributo não existe o programa usa o tributo do global.
 ## Organização de pastas
 Sendo o usuario _UserTest1_:
 ```
@@ -49,5 +59,6 @@ users/
 	|--- collection.txt
 	|--- favorites.txt
 	|--- list.config
+	|--- theme.config
 ```
 

@@ -14,7 +14,7 @@
               "type": "markdown",
               "state": {
                 "file": "3 - Usuarios.md",
-                "mode": "source",
+                "mode": "preview",
                 "source": false
               }
             }
@@ -36,8 +36,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "f42ad92b7a83c6bf",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "5 - Temas.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -103,7 +116,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "4 - Jogos.md",
+                "file": "5 - Temas.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -120,7 +133,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "4 - Jogos.md",
+                "file": "5 - Temas.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -143,7 +156,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "4 - Jogos.md"
+                "file": "5 - Temas.md"
               }
             }
           }
@@ -164,9 +177,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "646f4d1d56b948b0",
+  "active": "f42ad92b7a83c6bf",
   "lastOpenFiles": [
     "3 - Usuarios.md",
+    "5 - Temas.md",
     "4 - Jogos.md",
     "2 - Arquivos de configuração.md",
     "1 - Introdução.md",
