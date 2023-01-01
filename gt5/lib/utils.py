@@ -7,25 +7,48 @@ Contem funções basicas, genericas e utilitarios
 CONFIGPATH = ".config/.config"
 
 
-def __writeline(key: str, value:str):
+def criar_ficheiro(__file:str) -> bool:
+    """
+    cria um ficheiro
+
+    :return True: caso o arquivo seja criaro
+    :return False: em caso de erro
+    """
+    try:
+        open(__file, "x").close()
+    except:
+        return False
+
+    return True
+
+
+def __formatline(key: str, value:str):
     """
     Formata uma linha baseado no key e value provido
 
     !! desenhado para ser usado pela função save
     !! não deve ser usado diretamente
     """
-    text = f'{key}=\"'
+    text = f'{key}='
+
+    # embrulha com o " só se não for um numero
+    if type(value) == str:
+        text += "\""
+
     # se o valor é uma lista ou um set vamos guardar no formato
     # comma-separeted value (value;value;value)
-    if type(value) == list or type(value) == set:
+    if type(value) == list or type(value) == set or type(value) == tuple:
         for item in value:
             text += f'{item};'
         
         text = text[:-1] # remove o ultimo ponto e virgula (;)
     else:
         text += f'{value}'
+
+    if type(value) == str:
+        text += "\""
     
-    text += '\"\n' # adciona uma quebra de linha
+    text += '\n' # adciona uma quebra de linha no fim
 
     return text
 
@@ -48,7 +71,7 @@ def parser(__filepath:str) -> dict:
             # faz a sanatização dos dados
             key.strip()
             value.strip()
-
+            
             new_value = ""
 
             # remove os caracters extras no value como a nova linha(\n) e os apostrofes ("")
@@ -100,15 +123,31 @@ def write(__filepath:str, __data:dict) -> bool:
     """
     Guarda os dados providos ao ficheiro provido preservando os
     comentarios. Os dados que não foram providos como argumentos
-    tambem são preservados. Caso o arquivo não exista ele é criado
+    tambem são preservados. Caso o arquivo não exista ele é criado.
+    Escreve tambem um conjunto de comentarios no arquivo descrevendo
+    o uso
 
     __filepath: o caminho do arquivo onde os dados serão guardados,
     cria um novo caso não exista
 
     __dada: os dados a serem guardados que devem ser um dicionario
     """
+
+    # esses comentarios servem para ajudar 
+    COMENTARIOS = """# ----------------------------------------
+# comentarios gerados automaticamente
+# ----------------------------------------
+# os comentarios começam com um jogo da velha (#)
+# seguem uma estrutura de key=value
+# value deve ser embrulhado em aspas duplas ("") quando for uma string
+# o valor pode ser string, lista (list, tuple, set), 
+# booleano (True, False) ou numero interio
+# recomendado não conter espaços entre eles
+# ----------------------------------------
+"""
+
     chaves = __data.keys() # as chaves nos dados
-    text = "" # o que vai ser reescrito depois no arquivo
+    text = COMENTARIOS # o que vai ser reescrito depois no arquivo
     value = "" # calor em cada loop
     key = "" # chave em cada loop
 
@@ -117,7 +156,7 @@ def write(__filepath:str, __data:dict) -> bool:
     # caso o arquivo já exista
     except:
         for key in __data:
-            text += __writeline(key, __data[key])
+            text += __formatline(key, __data[key])
     else:
         with open(__filepath, "r") as file:
             # atualiza os dados existentes
@@ -128,11 +167,10 @@ def write(__filepath:str, __data:dict) -> bool:
 
                 line_content = line.split("=")
 
-
-                # caso já exista o atualiza
+                # caso a chave já exista o atualiza
                 if key in chaves:
                     value = __data[line_content[0]]
-                    __writeline(key, value)
+                    __formatline(key, value)
                     continue
                 
                 text += line # conserva a linha
@@ -140,12 +178,46 @@ def write(__filepath:str, __data:dict) -> bool:
             # caso existam ainda dados no dicionario os escreve abaixo
             for key in __data:
                 # escreve os restantes
-                text += __writeline(key, __data[key])
+                text += __formatline(key, __data[key])
     
     # reescreve o texto modificado
     with open(__filepath, "w") as file:
         file.write(text)
 
+
+def write_list(__path:str, __list:list) -> None:
+    """
+    Escreve uma lista a um arquivo no formato "value;value"
+    """
+    __list = set(__list)
+
+    with open(__path, "a") as file:
+        file.write(";".join(__list))
+
+
+def parse_list(__path:str) -> list:
+    """
+    Lê um arquivo e converte para uma lista.
+    """
+
+    with open(__path, "r") as file:
+        # lê o arquivo
+        # separa os elementos
+        # converte para set para evitar duplicações
+        # converte novamente para lista e retorna
+        return list(set(file.read().split(";")))
+
+
+def delete_list(__path:str, __value:str|int) -> None:
+    """
+    Deleta um valor de uma arquivo do tipo lista
+    """
+    # lê o arquivo
+    # transforma numa lista
+    # remove a primeira ocorencia do __value
+    # reescreve o arquivo com os dados alterados
+    write_list(parse_list(__path).remove(__value))
+    
 
 def get_defaults():
     return parser(CONFIGPATH)
@@ -162,9 +234,15 @@ APPNAME = config["app_name"]
 theme   = config["theme"]
 
 
+def criptografar(palavrapasse:str) -> str:
+    """
+    criptografa a palavrapasse criando um hash
+    """
+    return palavrapasse
+
+
 if __name__ == "__main__":
     # ao rodar o programa diretamente este imprime na tela as definições padrões
     print(parser(CONFIGPATH))
     write("test", {"person": [12, 42], "age": 18})
-    print(parser("test"))
 
