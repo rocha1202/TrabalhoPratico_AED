@@ -15,12 +15,14 @@ Podes fazer login como usuario _admin_ com a palavra-passe padrão de **1234** c
 Ao criar uma conta por padrão o usuario não tem nenhuma permissão especial (como criar novas categorias).
 
 ### Gerenciamento de jogos
-O proposito doo GT5 de gerenciar os seus jogos, para isso basta criar uma conta e clicar no _simbolo de mais_ no canto esquerdo para adcionar os seus jogos.
-![Adcionando jogos](./img/screenshots/criar_jogo.png)
+O proposito doo GT5 de gerenciar os seus jogos, para isso basta criar uma conta e clicar no _simbolo de mais_ no canto inferior direito para adcionar os seus jogos.
+![jogos](./img/screenshots/jogos.png)
 Depois de adcionado o jogo já aparece na sua biblioteca e podes eventualmente deletar, comentar e adcionar aos favoritos.
+![Colecção de jogos](./img/screenshots/collection.png)
+![Favoritos](./img/screenshots/favoritos.png)
 
 ### Comunidade
-Caso outro usuario tenha adcionado um jogo previamente podes simplesmente adcionar este a sua coleção ao inves de ter que fazer todo o processo de criar o jogo.
+Caso outro usuario tenha adcionado um jogo previamente podes simplesmente adcionar este as suas lista ou favoritos ao inves de ter que fazer todo o processo de criar o jogo.
 
 ## Dependencias
 Para usar o programa é necessario ter o python na versão [3.10](https://www.python.org/downloads/release/python-3109/), apos isso use o script [build.sh](build.sh) para fazer o resto da instalação.
@@ -31,7 +33,7 @@ Para usar o programa é necessario ter o python na versão [3.10](https://www.py
 - Pillow==9.3.0
 
 ### script
-O script cria um ambiente virtual, o ativa e usa o requirements.txt para instalar a dependencias e executa o programa
+O script cria um ambiente virtual, o ativa e usa o requirements.txt para instalar a dependencias e executa o programa.
 
 ## Estado
 Este programa ainda está em desenvolvento. 

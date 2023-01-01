@@ -5,4 +5,4 @@ categoria="something"
 tag="violent;cars;fps"
 username="filintodelgado"
 private=False
-command=True
+command="/home/filintodelgado/games/undertale.bin"
