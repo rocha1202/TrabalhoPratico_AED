@@ -39,7 +39,7 @@ class App(customtkinter.CTk):
         self.logo.grid(row=0, column=0)
         
         # o login
-        self.login = "filintodelgado"
+        self.login = "inesrocha"
 
         # configura a fonte
         # self.font = customtkinter.CTkFont()
