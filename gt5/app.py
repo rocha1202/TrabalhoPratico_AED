@@ -3,7 +3,7 @@ from lib import utils, user, theme, game
 from pages import tabs
 from widgets import logo, button, frame
 
-customtkinter.set_appearance_mode("System")  # Modes: "System" (standard), "Dark", "Light"
+customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
 
 APPNAME = utils.APPNAME if utils.APPNAME else "GT5"
@@ -39,7 +39,7 @@ class App(customtkinter.CTk):
         self.logo.grid(row=0, column=0)
         
         # o login
-        self.login = "inesrocha"
+        self.login = "filintodelgado"
 
         # configura a fonte
         # self.font = customtkinter.CTkFont()

@@ -9,23 +9,46 @@ class ContentFrame(customtkinter.CTkFrame):
 
 
 class GameButtons(customtkinter.CTkFrame):
+  """
+  Adciona os botões de menu ao jogo
+
+  Botão de editar: caso o usuario seja dono do jogo ele poderá editar o jogo
+  Botão de delete: caso o usuario seja dono do jogo ele pode o deletar
+  """
   def __init__(self, master, jogo):
+    """
+    :param master: o objeto master onde o widget vai ser posiciondo
+    :param jogo: o objeto (dicionario) do jogo onde ele vai ser adcionado
+    """
     super().__init__(master, fg_color="transparent")
 
-    self.grid_columnconfigure((0, 1, 2), pad=10)
+    self.grid_columnconfigure((0, 1, 2, 3), pad=10)
+
+    self.favoritar_path = "img/assets/heart-filled.png" if jogo["favorito"] else "img/assets/heart.png"
+
+    self.favoritar = button.ImageButton(self, fg_color="#293540", path=self.favoritar_path, command=self.favoritarJogo)
+    self.favoritar.grid(column=2, row=0)
 
     if jogo["owner"]:
       self.edit = button.ImageButton(self, fg_color="green", path="img/assets/editar.png")
-      self.edit.grid(column=0, row=0)
+      self.edit.grid(column=1, row=0)
       self.delete = button.ImageButton(self, fg_color="red", path="img/assets/delete.png")
-      self.delete.grid(column=1, row=0)
+      self.delete.grid(column=0, row=0)
     
     if jogo["command"]:
       self.command = button.ImageButton(self, fg_color="blue", path="img/assets/play.png")
-      self.command.grid(column=2, row=0)
+      self.command.grid(column=3, row=0)
+    
+  def favoritarJogo(self) -> None:
+    self.favoritar = "img/assets/heart-filled" if "img/assets/heart.png" else "img/assets/heart-filled.png"
+
+    pass
 
 
 class MenuButtons(customtkinter.CTkFrame):
+  """
+  Adciona um menu 
+  """
   def __init__(self, master):
     super().__init__(master)
 
