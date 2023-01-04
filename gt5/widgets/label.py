@@ -10,3 +10,7 @@ class GameTitle(Label):
   def __init__(self, master, text, theme):
     super().__init__(master, text=text, text_color=theme["BRANCO"])
 
+class GameGenre(Label):
+  def __init__(self, master, text, theme):
+    super().__init__(master, text=text, text_color=theme["BRANCO"])
+

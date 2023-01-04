@@ -258,6 +258,8 @@ def get_categoria(username:str=None) -> dict:
             resultado[jogo["categoria"]] = [jogo]
         else:
             resultado[jogo["categoria"]].append(jogo)
+    
+    return resultado
 
 
 def get_my_games(username:str) -> dict:

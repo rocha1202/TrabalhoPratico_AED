@@ -32,5 +32,9 @@ class Tabs(customtkinter.CTkTabview):
     self.favoritos.jogos = frame.Jogos(self.favoritos, theme, game.get_favoritos(login))
     self.favoritos.jogos.pack(fill="both")
 
+    ######Categoria#####
+    self.categoria = frame.Categorias(self.categorias, theme, game.get_categoria(login))
+    self.categoria.pack(fill="both")
+
   def povoarjogos():
     pass

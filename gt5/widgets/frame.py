@@ -104,5 +104,49 @@ class Jogos(ContentFrame):
       self.info.pack()
 
 
+class Categoria(ContentFrame):
+  def __init__(self, master, theme, nome, jogos):
+    super().__init__(master, theme["PRINCIPAL"])
+
+    self.titulo = label.GameGenre(self, nome, theme)
+    self.titulo.pack(fill="both", sticky="w")
+
+    self.jogos = Jogos(self, theme, jogos)
+    self.jogos.pack(fill="both")
+  
+class Categorias(ContentFrame):
+  """
+  {
+    "categoria1": [
+      jogo1, jogo2, jogo3
+    ],
+    "categoria2": [
+      jogo4, jogo5, jogo6
+    ]
+  }
+
+  ["categoria1", "categoria2"]
+  """
+  def __init__(self, master, theme, jogos):
+    super().__init__(master)
+
+    self.categorias = []
+
+    for categoria in jogos.keys():
+      self.categorias.append(Categoria(self, theme, categoria, jogos[categoria]))
+      self.categorias[-1].pack(fill="both", pady=10)
+
+
+
+
+
+
+
+
+
+
+
+
+
 class Favorite:
   pass
