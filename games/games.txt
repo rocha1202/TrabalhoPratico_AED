@@ -1,2 +1,0 @@
-Ação;Pac-Man;Sonic The Hedgehog;Super Mario Bros;Temple Run;Subway Surfers
-Aventura;

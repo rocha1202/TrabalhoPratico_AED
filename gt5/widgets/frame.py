@@ -24,25 +24,25 @@ class GameButtons(customtkinter.CTkFrame):
 
     self.grid_columnconfigure((0, 1, 2, 3), pad=10)
 
-    self.favoritar_path = "img/assets/heart-filled.png" if jogo["favorito"] else "img/assets/heart.png"
+    self.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
 
-    self.favoritar = button.ImageButton(self, fg_color="#293540", path=self.favoritar_path, command=self.favoritarJogo)
+    self.favoritar = button.ImageButton(self, fg_color="#293540", name=self.favoritar_name, command=self.favoritarJogo)
     self.favoritar.grid(column=2, row=0)
 
     if jogo["owner"]:
-      self.edit = button.ImageButton(self, fg_color="green", path="img/assets/editar.png")
+      self.edit = button.ImageButton(self, fg_color="green", name="editar")
       self.edit.grid(column=1, row=0)
-      self.delete = button.ImageButton(self, fg_color="red", path="img/assets/delete.png")
+      self.delete = button.ImageButton(self, fg_color="red", name="delete")
       self.delete.grid(column=0, row=0)
     
     if jogo["command"]:
-      self.command = button.ImageButton(self, fg_color="blue", path="img/assets/play.png")
+      self.command = button.ImageButton(self, fg_color="blue", name="play")
       self.command.grid(column=3, row=0)
     
   def favoritarJogo(self) -> None:
-    self.favoritar = "img/assets/heart-filled" if "img/assets/heart.png" else "img/assets/heart-filled.png"
+    self.favoritar_name = "heart-filled" if self.favoritar_name == "heart" else "heart"
 
-    pass
+    self.favoritar.configure(image=button.make_asset(self.favoritar_name))
 
 
 class MenuButtons(customtkinter.CTkFrame):
@@ -56,7 +56,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.grid_columnconfigure(1, weight=1, pad=10)
 
     # refresh
-    self.refresh = button.ImageButton(self, fg_color="blue", path="img/assets/refresh.png", size=(17, 15))
+    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15))
     self.refresh.grid(column=0, row=0, padx=10, pady=10)
 
     # notificações
@@ -64,7 +64,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.notification.grid(column=1, row=0)
 
     # add
-    self.add = button.ImageButton(self, fg_color="green", path="img/assets/plus-sign.png", size=(15,15))
+    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15))
     self.add.grid(column=2, row=0, padx=10)
 
 
@@ -107,12 +107,13 @@ class Jogos(ContentFrame):
 class Categoria(ContentFrame):
   def __init__(self, master, theme, nome, jogos):
     super().__init__(master, theme["PRINCIPAL"])
+    self.configure(corner_radius=10)
 
     self.titulo = label.GameGenre(self, nome, theme)
-    self.titulo.pack(fill="both", sticky="w")
+    self.titulo.pack(pady=2, padx=5)
 
     self.jogos = Jogos(self, theme, jogos)
-    self.jogos.pack(fill="both")
+    self.jogos.pack(fill="both", pady=2, padx=2)
   
 class Categorias(ContentFrame):
   """
@@ -133,7 +134,7 @@ class Categorias(ContentFrame):
     self.categorias = []
 
     for categoria in jogos.keys():
-      self.categorias.append(Categoria(self, theme, categoria, jogos[categoria]))
+      self.categorias.append(Categoria(self, theme, categoria.upper(), jogos[categoria]))
       self.categorias[-1].pack(fill="both", pady=10)
 
 
