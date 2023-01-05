@@ -116,8 +116,8 @@ class Categoria(ContentFrame):
     self.jogos.pack(fill="both", pady=2, padx=2)
   
 class Conta(ContentFrame):
-  def __init__(self, master, fg_color="transparent"):
-    super().__init__(master, fg_color)
+  def __init__(self, master, theme, login=None):
+    super().__init__(master, theme["PRINCIPAL"])
 
 class Categorias(ContentFrame):
   """
