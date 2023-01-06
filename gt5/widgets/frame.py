@@ -8,7 +8,6 @@ class ContentFrame(customtkinter.CTkFrame):
   def __init__(self, master, fg_color="transparent"):
     super().__init__(master, fg_color=fg_color, corner_radius=10)
 
-
 class GameButtons(customtkinter.CTkFrame):
   """
   Adciona os botões de menu ao jogo
@@ -116,14 +115,20 @@ class Categoria(ContentFrame):
     self.jogos = Jogos(self, theme, jogos)
     self.jogos.pack(fill="both", pady=2, padx=2)
 
+class Lista(ContentFrame):
+  def __init__(self, master, theme):
+    super().__init__(master, theme["PRINCIPAL"])
+    self.configure(corner_radius=10)
+
 class Conta(ContentFrame):
   def __init__(self, master, theme, username):
     super().__init__(master, theme["PRINCIPAL"])
     self.configure(corner_radius=10)
-"""
-    self.user = user.User(self, theme, username)
-    self.user.pack(fill="both", pady=2, padx=2)
-"""
+
+    self.username = customtkinter.CTkLabel(self, text=username)
+    self.username.pack()
+
+
 
 
 
@@ -148,18 +153,6 @@ class Categorias(ContentFrame):
     for categoria in jogos.keys():
       self.categorias.append(Categoria(self, theme, categoria.upper(), jogos[categoria]))
       self.categorias[-1].pack(fill="both", pady=10)
-
-
-
-
-
-
-
-
-
-
-
-
 
 class Favorite:
   pass

@@ -36,9 +36,11 @@ class Tabs(customtkinter.CTkTabview):
     self.categoria = frame.Categorias(self.categorias, theme, game.get_categoria(login))
     self.categoria.pack(fill="both")
 
-    ######LISTA#####
-    #self.lista = frame.Lista(self.lista,theme)
-    #self.lista.pack(fill="both")
+
+    ######Lista#####
+    self.listas = frame.Lista(self.listas,theme)
+    self.listas.pack(fill="both")
+
 
     ######CONTA#####
     self.conta = frame.Conta(self.conta,theme, user.get_login())
