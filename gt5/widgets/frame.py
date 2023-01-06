@@ -116,8 +116,12 @@ class Categoria(ContentFrame):
     self.jogos.pack(fill="both", pady=2, padx=2)
   
 class Conta(ContentFrame):
-  def __init__(self, master, theme, login=None):
+  def __init__(self, master, theme, user):
     super().__init__(master, theme["PRINCIPAL"])
+    self.configure(corner_radius=10)
+  
+
+
 
 class Categorias(ContentFrame):
   """
