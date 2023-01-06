@@ -1,6 +1,7 @@
 import customtkinter
 
 from widgets import label, button
+from lib import user
 
 
 class ContentFrame(customtkinter.CTkFrame):
@@ -114,12 +115,15 @@ class Categoria(ContentFrame):
 
     self.jogos = Jogos(self, theme, jogos)
     self.jogos.pack(fill="both", pady=2, padx=2)
-  
+
 class Conta(ContentFrame):
-  def __init__(self, master, theme, user):
+  def __init__(self, master, theme, username):
     super().__init__(master, theme["PRINCIPAL"])
     self.configure(corner_radius=10)
-  
+"""
+    self.user = user.User(self, theme, username)
+    self.user.pack(fill="both", pady=2, padx=2)
+"""
 
 
 

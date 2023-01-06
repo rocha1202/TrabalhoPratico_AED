@@ -323,6 +323,11 @@ def login(username:str, password:str, remeber:bool) -> int:
 
     return 0
 
+class utilizador:
+    f =open("./users/USER-ATIVO","r")
+    linha=f.readlines()
+    print(linha)
+    f.close
 
 if __name__ == "__main__":
     criar("filintodelgado", "Filinto Delgado", "1234")
