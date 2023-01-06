@@ -127,9 +127,12 @@ class Conta(ContentFrame):
 
     self.username = customtkinter.CTkLabel(self, text=username)
     self.username.pack()
-    self.passoword = customtkinter.CTkLabel(self, text=password)
-    self.passoword.pack()
-
+    self.password_old = customtkinter.CTkEntry(master=self, placeholder_text="Password Antiga")
+    self.password_old.pack(pady=3)
+    self.password_new = customtkinter.CTkEntry(master=self, placeholder_text="Password Nova")
+    self.password_new.pack(pady=3)
+    self.password_newVerifica = customtkinter.CTkEntry(master=self, placeholder_text="Password Nova Novamente")
+    self.password_newVerifica.pack(pady=3)
 
 
 
