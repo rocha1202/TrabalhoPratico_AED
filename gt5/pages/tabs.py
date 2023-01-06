@@ -43,7 +43,7 @@ class Tabs(customtkinter.CTkTabview):
 
 
     ######CONTA#####
-    self.conta = frame.Conta(self.conta,theme, user.get_login())
+    self.conta = frame.Conta(self.conta,theme, user.get_login(), user.get_password())
     self.conta.pack(fill="both")
 
   def povoarjogos():

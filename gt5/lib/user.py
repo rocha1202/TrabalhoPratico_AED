@@ -286,6 +286,17 @@ def get_login() -> str:
     
     return utils.parser(LOGINPATH)["username"]
 
+def get_password() -> str:
+    """
+    Retorn o password em cache
+    """
+    global LOGINPATH
+
+    # caso o arquivo não exista
+    if not path.exists(LOGINPATH):
+        return None
+    
+    return utils.parser(LOGINPATH)["password"]
 
 def delete_login_cache() -> None:
     """

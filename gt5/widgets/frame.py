@@ -121,13 +121,14 @@ class Lista(ContentFrame):
     self.configure(corner_radius=10)
 
 class Conta(ContentFrame):
-  def __init__(self, master, theme, username):
+  def __init__(self, master, theme, username, password):
     super().__init__(master, theme["PRINCIPAL"])
     self.configure(corner_radius=10)
 
     self.username = customtkinter.CTkLabel(self, text=username)
     self.username.pack()
-
+    self.passoword = customtkinter.CTkLabel(self, text=password)
+    self.passoword.pack()
 
 
 
