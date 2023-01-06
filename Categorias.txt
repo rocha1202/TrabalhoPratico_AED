@@ -1,0 +1,17 @@
+Ação;
+Aventura;
+Estratégia;
+RPG;
+Esporte;
+Corrida;
+Jogo on-line;
+Simulação;
+Tabuleiro Eletrônico;
+Casual;
+Cartas;
+Ritmo;
+Plataforma;
+Quebra-Cabeça;
+Trívia;
+FMVs;
+Battle Royale;
