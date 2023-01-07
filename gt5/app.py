@@ -2,6 +2,7 @@ import customtkinter
 from lib import utils, user, theme, game
 from pages import tabs
 from widgets import logo, button, frame
+from lib import log
 
 customtkinter.set_appearance_mode("Dark")  # Modes: "System" (standard), "Dark", "Light"
 customtkinter.set_default_color_theme("dark-blue")  # Themes: "blue" (standard), "green", "dark-blue"
@@ -56,6 +57,9 @@ class App(customtkinter.CTk):
 
         self.menu = frame.MenuButtons(self)
         self.menu.grid(row=2, column=0, sticky="nesw", padx=10, pady=10)
+
+        log.set_notification_display(self.menu.notification)
+        
     
     def restart(self):
         """

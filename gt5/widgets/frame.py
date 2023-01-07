@@ -2,7 +2,7 @@ import customtkinter
 
 from widgets import label, button
 from lib import user
-
+from lib import log
 
 class ContentFrame(customtkinter.CTkFrame):
   def __init__(self, master, fg_color="transparent"):
@@ -23,6 +23,8 @@ class GameButtons(customtkinter.CTkFrame):
     super().__init__(master, fg_color="transparent")
 
     self.grid_columnconfigure((0, 1, 2, 3), pad=10)
+    
+    self.jogo = jogo
 
     self.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
 
@@ -40,9 +42,17 @@ class GameButtons(customtkinter.CTkFrame):
       self.command.grid(column=3, row=0)
     
   def favoritarJogo(self) -> None:
-    self.favoritar_name = "heart-filled" if self.favoritar_name == "heart" else "heart"
-
-    self.favoritar.configure(image=button.make_asset(self.favoritar_name))
+    """
+    Adciona ou remove o jogo da lista de favoritos do ususario
+    """
+    if self.favoritar_name == "heart-filled":
+      self.favoritar_name = "heart"
+      log.notification("Jogo removido dos favoritos")
+      self.favoritar.configure(image=button.make_asset(self.favoritar_name))
+    else:
+      self.favoritar_name = "heart-filled"
+      log.notification("Jogo adcionado dos favoritos")
+      self.favoritar.configure(image=button.make_asset(self.favoritar_name))
 
 
 class MenuButtons(customtkinter.CTkFrame):
@@ -56,7 +66,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.grid_columnconfigure(1, weight=1, pad=10)
 
     # refresh
-    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15))
+    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15), command=lambda: notification("Refresh"))
     self.refresh.grid(column=0, row=0, padx=10, pady=10)
 
     # notificações
@@ -64,7 +74,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.notification.grid(column=1, row=0)
 
     # add
-    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15))
+    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15), command=lambda: notification("Jogo adcionado"))
     self.add.grid(column=2, row=0, padx=10)
 
 
