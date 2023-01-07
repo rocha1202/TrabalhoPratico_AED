@@ -66,7 +66,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.grid_columnconfigure(1, weight=1, pad=10)
 
     # refresh
-    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15), command=lambda: notification("Refresh"))
+    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15), command=lambda: log.notification("Refresh"))
     self.refresh.grid(column=0, row=0, padx=10, pady=10)
 
     # notificações
@@ -74,7 +74,7 @@ class MenuButtons(customtkinter.CTkFrame):
     self.notification.grid(column=1, row=0)
 
     # add
-    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15), command=lambda: notification("Jogo adcionado"))
+    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15), command=lambda: log.notification("Jogo adcionado"))
     self.add.grid(column=2, row=0, padx=10)
 
 
