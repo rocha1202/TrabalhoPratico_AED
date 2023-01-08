@@ -184,6 +184,3 @@ def Categorias(master, theme, jogos):
     frame.categorias[-1].pack(fill="both", pady=10)
   
   return frame
-
-class Favorite:
-  pass
