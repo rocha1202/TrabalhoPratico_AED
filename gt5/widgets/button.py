@@ -37,18 +37,14 @@ def make_asset(name:str, size:set=(10, 10)) -> customtkinter.CTkImage:
 
 
 
-class Button(customtkinter.CTkButton):
+def Button(master, text, theme, command=None) -> customtkinter.CTkButton:
   """
   O botão padrão do app, usando a cor principal para cor de fundo e a cor secundario no hover
   """
-  def __init__(self, master, text, theme, command=None):
-    super().__init__(master, text=text, fg_color=theme["PRINCIPAL"], hover_color=theme["SECUNDARIA"], command=command)
-
-  def change_image(self, new_image):
-    self.configure(image=new_image)
+  return customtkinter.CTkButton(master, text=text, fg_color=theme["PRINCIPAL"], hover_color=theme["SECUNDARIA"], command=command)
 
 
-class ImageButton(customtkinter.CTkButton):
+def ImageButton(master, fg_color, name, size=(10, 10), command=None) -> customtkinter.CTkButton:
   """
   Botão de imagem principal do programa
 
@@ -57,6 +53,5 @@ class ImageButton(customtkinter.CTkButton):
   :param size: o tamanho do asset
   :param comand: o função que será chamada quando o botão for clicado
   """
-  def __init__(self, master, fg_color, name, size=(10, 10), command=None):
-    super().__init__(master, fg_color=fg_color, text="", image=make_asset(name), command=command,
-                     width=size[0]+5, height=size[1]+5)
+  return customtkinter.CTkButton(master, fg_color=fg_color, text="", image=make_asset(name), command=command,
+                   width=size[0]+5, height=size[1]+5)

@@ -3,150 +3,166 @@ import customtkinter
 from widgets import label, button
 from lib import user
 from lib import log
+from window import add
 
-class ContentFrame(customtkinter.CTkFrame):
-  def __init__(self, master, fg_color="transparent"):
-    super().__init__(master, fg_color=fg_color, corner_radius=10)
+def ContentFrame(master, fg_color="transparent") -> customtkinter.CTkFrame:
+  """
+  Criar o frame padrão do app
+  """
+  return customtkinter.CTkFrame(master, fg_color=fg_color, corner_radius=10)
 
-class GameButtons(customtkinter.CTkFrame):
+def GameButtons(master, jogo) -> customtkinter.CTkFrame:
   """
   Adciona os botões de menu ao jogo
 
   Botão de editar: caso o usuario seja dono do jogo ele poderá editar o jogo
   Botão de delete: caso o usuario seja dono do jogo ele pode o deletar
+
+  :param master: o objeto master onde o widget vai ser posiciondo
+  :param jogo: o objeto (dicionario) do jogo onde ele vai ser adcionado
   """
-  def __init__(self, master, jogo):
-    """
-    :param master: o objeto master onde o widget vai ser posiciondo
-    :param jogo: o objeto (dicionario) do jogo onde ele vai ser adcionado
-    """
-    super().__init__(master, fg_color="transparent")
+  frame = ContentFrame(master, fg_color="transparent")
 
-    self.grid_columnconfigure((0, 1, 2, 3), pad=10)
+  frame.grid_columnconfigure((0, 1, 2, 3), pad=10)
+  
+  frame.jogo = jogo
+
+  frame.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
+
+  frame.favoritar = button.ImageButton(frame, fg_color="#293540", name=frame.favoritar_name, command=favoritarJogo)
+  frame.favoritar.grid(column=2, row=0)
+
+  if jogo["owner"]:
+    frame.edit = button.ImageButton(frame, fg_color="green", name="editar")
+    frame.edit.grid(column=1, row=0)
+    frame.delete = button.ImageButton(frame, fg_color="red", name="delete")
+    frame.delete.grid(column=0, row=0)
+  
+  if jogo["command"]:
+    frame.command = button.ImageButton(frame, fg_color="blue", name="play")
+    frame.command.grid(column=3, row=0)
+  
+  return frame
+
     
-    self.jogo = jogo
-
-    self.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
-
-    self.favoritar = button.ImageButton(self, fg_color="#293540", name=self.favoritar_name, command=self.favoritarJogo)
-    self.favoritar.grid(column=2, row=0)
-
-    if jogo["owner"]:
-      self.edit = button.ImageButton(self, fg_color="green", name="editar")
-      self.edit.grid(column=1, row=0)
-      self.delete = button.ImageButton(self, fg_color="red", name="delete")
-      self.delete.grid(column=0, row=0)
-    
-    if jogo["command"]:
-      self.command = button.ImageButton(self, fg_color="blue", name="play")
-      self.command.grid(column=3, row=0)
-    
-  def favoritarJogo(self) -> None:
-    """
-    Adciona ou remove o jogo da lista de favoritos do ususario
-    """
-    if self.favoritar_name == "heart-filled":
-      self.favoritar_name = "heart"
-      log.notification("Jogo removido dos favoritos")
-      self.favoritar.configure(image=button.make_asset(self.favoritar_name))
-    else:
-      self.favoritar_name = "heart-filled"
-      log.notification("Jogo adcionado dos favoritos")
-      self.favoritar.configure(image=button.make_asset(self.favoritar_name))
-
-
-class MenuButtons(customtkinter.CTkFrame):
+def favoritarJogo(master) -> None:
   """
-  Adciona um menu 
+  Adciona ou remove o jogo da lista de favoritos do ususario
   """
-  def __init__(self, master):
-    super().__init__(master)
+  if master.favoritar_name == "heart-filled":
+    master.favoritar_name = "heart"
+    log.notification("Jogo removido dos favoritos")
+    master.favoritar.configure(image=button.make_asset(master.favoritar_name))
+  else:
+    master.favoritar_name = "heart-filled"
+    log.notification("Jogo adcionado dos favoritos")
+    master.favoritar.configure(image=button.make_asset(master.favoritar_name))
 
-    self.grid_columnconfigure((0, 2), weight=0)
-    self.grid_columnconfigure(1, weight=1, pad=10)
+
+def MenuButtons(master:customtkinter.CTk) -> customtkinter.CTkFrame:
+    menu = customtkinter.CTkFrame(master)
+
+    menu.grid_columnconfigure((0, 2), weight=0)
+    menu.grid_columnconfigure(1, weight=1, pad=10)
 
     # refresh
-    self.refresh = button.ImageButton(self, fg_color="blue", name="refresh", size=(17, 15), command=lambda: log.notification("Refresh"))
-    self.refresh.grid(column=0, row=0, padx=10, pady=10)
+    menu.refresh = button.ImageButton(menu, fg_color="blue", name="refresh", size=(17, 16), command=lambda: log.notification("Refresh"))
+    menu.refresh.grid(column=0, row=0, padx=10, pady=10)
 
     # notificações
-    self.notification = customtkinter.CTkLabel(self, text="Nenhuma notificação por agora.", corner_radius=10)
-    self.notification.grid(column=1, row=0)
+    menu.notification = customtkinter.CTkLabel(menu, text="Nenhuma notificação por agora.", corner_radius=10)
+    menu.notification.grid(column=1, row=0)
 
     # add
-    self.add = button.ImageButton(self, fg_color="green", name="plus-sign", size=(15,15), command=lambda: log.notification("Jogo adcionado"))
-    self.add.grid(column=2, row=0, padx=10)
+    menu.add = button.ImageButton(menu, fg_color="green", name="plus-sign", size=(15,15), command=lambda: menu.add_game(master))
+    menu.add.grid(column=2, row=0, padx=10)
+    
+    return menu
+
+  
+def add_game(menu, master:customtkinter.CTk):
+  """
+  Ao clicar no botão abre uma window para adcionar um novo jogo
+  """
+  menu.add_window = add.AddGame(master)
 
 
-class Jogo(ContentFrame):
-  def __init__(self, master, jogo, theme):
-    super().__init__(master, fg_color=theme["PRINCIPAL"])
+def Jogo(master, jogo, theme) -> customtkinter.CTkFrame:
+  frame = ContentFrame(master, fg_color=theme["PRINCIPAL"])
 
-    # configura a grid
-    self.grid_columnconfigure(0, weight=1, pad=10)
-    self.grid_columnconfigure(1, weight=0)
+  # configura a grid
+  frame.grid_columnconfigure(0, weight=1, pad=10)
+  frame.grid_columnconfigure(1, weight=0)
 
-    # o nome do jogo
-    self.name = label.GameTitle(self, text=jogo["nome"], theme=theme)
-    self.name.grid(column=0, row=0, padx=10, sticky="w")
+  # o nome do jogo
+  frame.name = label.GameTitle(frame, text=jogo["nome"], theme=theme)
+  frame.name.grid(column=0, row=0, padx=10, sticky="w")
 
-    if jogo["owner"] or jogo["command"]:
-      self.buttons = GameButtons(self, jogo)
-      self.buttons.grid(column=1, row=0, padx=10)
+  if jogo["owner"] or jogo["command"]:
+    frame.buttons = GameButtons(frame, jogo)
+    frame.buttons.grid(column=1, row=0, padx=10)
+  
+  return frame
 
 
-class Jogos(ContentFrame):
-  def __init__(self, master, theme, jogos=None):
-    super().__init__(master)
+def Jogos(master, theme, jogos=None) -> customtkinter.CTkFrame:
+    frame = ContentFrame(master)
 
-    self.todos_os_jogos = list()
+    frame.todos_os_jogos = list()
 
     if jogos:
       if type(jogos) == list:
         for jogo in jogos:
-          self.todos_os_jogos.append(Jogo(self, jogo, theme))
-          self.todos_os_jogos[-1].pack(fill="x", pady=2)
+          frame.todos_os_jogos.append(Jogo(frame, jogo, theme))
+          frame.todos_os_jogos[-1].pack(fill="x", pady=2)
       if type(jogos) == dict:
-        self.todos_os_jogos.append(Jogo(self, jogos, theme))
-        self.todos_os_jogos[-1].pack(fill="x")
+        frame.todos_os_jogos.append(Jogo(frame, jogos, theme))
+        frame.todos_os_jogos[-1].pack(fill="x")
     else:
-      self.info = label.GameTitle(self, text="Nenhum jogo para mostrar...", theme=theme)
-      self.info.pack()
+      frame.info = label.GameTitle(frame, text="Nenhum jogo para mostrar...", theme=theme)
+      frame.info.pack()
+    
+    return frame
 
 
-class Categoria(ContentFrame):
-  def __init__(self, master, theme, nome, jogos):
-    super().__init__(master, theme["PRINCIPAL"])
-    self.configure(corner_radius=10)
+def Categoria(master, theme, nome, jogos) -> customtkinter.CTkFrame:
+  categoria = ContentFrame(master, theme["PRINCIPAL"])
 
-    self.titulo = label.GameGenre(self, nome, theme)
-    self.titulo.pack(pady=2, padx=5)
+  categoria.configure(corner_radius=10)
 
-    self.jogos = Jogos(self, theme, jogos)
-    self.jogos.pack(fill="both", pady=2, padx=2)
+  categoria.titulo = label.GameGenre(categoria, nome, theme)
+  categoria.titulo.pack(pady=2, padx=5)
 
-class Lista(ContentFrame):
-  def __init__(self, master, theme):
-    super().__init__(master, theme["PRINCIPAL"])
-    self.configure(corner_radius=10)
+  categoria.jogos = Jogos(categoria, theme, jogos)
+  categoria.jogos.pack(fill="both", pady=2, padx=2)
 
-class Conta(ContentFrame):
-  def __init__(self, master, theme, username, password):
-    super().__init__(master, theme["PRINCIPAL"])
-    self.configure(corner_radius=10)
-
-    self.username = customtkinter.CTkLabel(self, text=username)
-    self.username.pack()
-    self.password_old = customtkinter.CTkEntry(master=self, placeholder_text="Password Antiga")
-    self.password_old.pack(pady=3)
-    self.password_new = customtkinter.CTkEntry(master=self, placeholder_text="Password Nova")
-    self.password_new.pack(pady=3)
-    self.password_newVerifica = customtkinter.CTkEntry(master=self, placeholder_text="Password Nova Novamente")
-    self.password_newVerifica.pack(pady=3)
+  return categoria
 
 
+def Lista(master, theme) -> customtkinter.CTkFrame:
+  lista = ContentFrame(master, theme["PRINCIPAL"])
+  lista.configure(corner_radius=10)
 
-class Categorias(ContentFrame):
+  return lista
+
+
+def Conta(master, theme, username, password) -> customtkinter.CTkFrame:
+  conta = ContentFrame(master, theme["PRINCIPAL"])
+  conta.configure(corner_radius=10)
+
+  conta.username = customtkinter.CTkLabel(conta, text=username)
+  conta.username.pack()
+  conta.password_old = customtkinter.CTkEntry(conta, placeholder_text="Password Antiga")
+  conta.password_old.pack(pady=3)
+  conta.password_new = customtkinter.CTkEntry(conta, placeholder_text="Password Nova")
+  conta.password_new.pack(pady=3)
+  conta.password_newVerifica = customtkinter.CTkEntry(conta, placeholder_text="Password Nova Novamente")
+  conta.password_newVerifica.pack(pady=3)
+
+  return conta
+
+
+def Categorias(master, theme, jogos):
   """
   {
     "categoria1": [
@@ -159,14 +175,15 @@ class Categorias(ContentFrame):
 
   ["categoria1", "categoria2"]
   """
-  def __init__(self, master, theme, jogos):
-    super().__init__(master)
+  frame = ContentFrame(master)
 
-    self.categorias = []
+  frame.categorias = []
 
-    for categoria in jogos.keys():
-      self.categorias.append(Categoria(self, theme, categoria.upper(), jogos[categoria]))
-      self.categorias[-1].pack(fill="both", pady=10)
+  for categoria in jogos.keys():
+    frame.categorias.append(Categoria(frame, theme, categoria.upper(), jogos[categoria]))
+    frame.categorias[-1].pack(fill="both", pady=10)
+  
+  return frame
 
 class Favorite:
   pass
