@@ -74,7 +74,7 @@ def MenuButtons(master:customtkinter.CTk) -> customtkinter.CTkFrame:
     menu.notification.grid(column=1, row=0)
 
     # add
-    menu.add = button.ImageButton(menu, fg_color="green", name="plus-sign", size=(15,15), command=lambda: menu.add_game(master))
+    menu.add = button.ImageButton(menu, fg_color="green", name="plus-sign", size=(15,15), command=lambda: add_game(menu, master))
     menu.add.grid(column=2, row=0, padx=10)
     
     return menu

@@ -8,3 +8,5 @@ def AddGame(master:customtkinter.CTk) -> customtkinter.CTkToplevel:
   window.focus_force()
   window.title("Adcionar jogo")
   window.geometry(f'500x300+{master.winfo_x()}+{master.winfo_y()}')
+  
+  return window
