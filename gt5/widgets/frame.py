@@ -29,7 +29,7 @@ def GameButtons(master, jogo) -> customtkinter.CTkFrame:
 
   frame.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
 
-  frame.favoritar = button.ImageButton(frame, fg_color="#293540", name=frame.favoritar_name, command=favoritarJogo)
+  frame.favoritar = button.ImageButton(frame, fg_color="#293540", name=frame.favoritar_name, command=lambda:favoritarJogo(frame))
   frame.favoritar.grid(column=2, row=0)
 
   if jogo["owner"]:
