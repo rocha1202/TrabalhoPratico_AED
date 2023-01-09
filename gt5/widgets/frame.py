@@ -152,7 +152,7 @@ def Conta(master, theme, username, password) -> customtkinter.CTkFrame:
 
   conta.username = customtkinter.CTkLabel(conta, text=username)
   conta.username.pack()
-  conta.password_old = customtkinter.CTkEntry(conta, placeholder_text="Password Antiga")
+  conta.password_old = customtkinter.CTkEntry(conta, placeholder_text="Password Antiga", show="*")
   conta.password_old.pack(pady=3)
   conta.password_new = customtkinter.CTkEntry(conta, placeholder_text="Password Nova", show="*")
   conta.password_new.pack(pady=3)
