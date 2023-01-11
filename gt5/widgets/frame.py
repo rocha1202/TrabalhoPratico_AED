@@ -4,6 +4,7 @@ from widgets import label, button
 from lib import user
 from lib import log
 from window import add
+from window import game
 
 def ContentFrame(master, fg_color="transparent") -> customtkinter.CTkFrame:
   """
@@ -23,24 +24,27 @@ def GameButtons(master, jogo) -> customtkinter.CTkFrame:
   """
   frame = ContentFrame(master, fg_color="transparent")
 
-  frame.grid_columnconfigure((0, 1, 2, 3), pad=10)
+  frame.grid_columnconfigure((0, 1, 2, 3, 4), pad=10)
+
+  frame.detalhes = button.ImageButton(frame, fg_color="grey", name="editar", command=DetalhesJogo)
+  frame.detalhes.grid(column=0, row=0)
   
   frame.jogo = jogo
 
   frame.favoritar_name = "heart-filled" if jogo["favorito"] else "heart"
 
   frame.favoritar = button.ImageButton(frame, fg_color="#293540", name=frame.favoritar_name, command=lambda:favoritarJogo(frame))
-  frame.favoritar.grid(column=2, row=0)
+  frame.favoritar.grid(column=3, row=0)
 
   if jogo["owner"]:
     frame.edit = button.ImageButton(frame, fg_color="green", name="editar")
-    frame.edit.grid(column=1, row=0)
+    frame.edit.grid(column=2, row=0)
     frame.delete = button.ImageButton(frame, fg_color="red", name="delete")
-    frame.delete.grid(column=0, row=0)
+    frame.delete.grid(column=1, row=0)
   
   if jogo["command"]:
     frame.command = button.ImageButton(frame, fg_color="blue", name="play")
-    frame.command.grid(column=3, row=0)
+    frame.command.grid(column=4, row=0)
   
   return frame
 
@@ -190,3 +194,6 @@ def Categorias(master, theme, jogos):
     frame.categorias[-1].pack(fill="both", pady=10)
   
   return frame
+
+def DetalhesJogo():
+  game.App()

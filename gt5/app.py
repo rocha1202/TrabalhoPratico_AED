@@ -80,9 +80,13 @@ def refresh(window):
         # reseta e volta ao tab selecionado
         window.restart()
         window.tabview.set(current_tab)
-        
+
+app = ""
 
 # o programa só roda se for rodado diretamente
 if __name__ == "__main__":
+    global app
     app = App()
     app.mainloop()
+
+DEFAULTAPP = app

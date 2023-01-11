@@ -61,7 +61,7 @@ id = get_id()
 def make_path(id):
     global PASTA
 
-    return PASTA+"/"+id
+    return PASTA+"/"+id+"/.config"
 
 
 def criar(__data:dict) -> bool:

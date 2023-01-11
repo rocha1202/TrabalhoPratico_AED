@@ -1,0 +1,12 @@
+# ----------------------------------------
+# comentarios gerados automaticamente
+# ----------------------------------------
+# os comentarios começam com um jogo da velha (#)
+# seguem uma estrutura de key=value
+# value deve ser embrulhado em aspas duplas ("") quando for uma string
+# o valor pode ser string, lista (list, tuple, set), 
+# booleano (True, False) ou numero interio
+# recomendado não conter espaços entre eles
+# ----------------------------------------
+person=12;42
+age=18
